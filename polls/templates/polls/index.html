@@ -4,6 +4,8 @@
         <li>
            <!-- <a href="/polls/{{ question.id }}/">{{ question.question_text}}</a>-->
             <a href="{% url 'detail' question.id %}">{{ question.question_text}}</a>
+            {{ question.choice_set.all|length }} 
+            ({{ question.choice_set.count }}개)
         </li>
         {% endfor %}
     </ul>

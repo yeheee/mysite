@@ -1,7 +1,8 @@
 <h1>{{ question.question_text }}</h1>
 
 <!--action, method, enctype-->
-<form action="" method="post">   <!--get, post-->
+<!--<form action="/{{question.id}}/vote/" method="post"--> 
+<form action="{% url 'vote' question.id %}" method="post">   <!--get, post-->
     {% csrf_token %}
 <!--input, select, textarea-->
     <ul>
@@ -13,4 +14,23 @@
         {% endfor %}
     </ul>
     <input type='submit' value="전송" />
+    <input type='button' value="초기화" />
 </form>
+
+
+<form id='frm' action='polls/{{question.id}}/reset/'>
+    <input type='submit' value='초기화'>
+</form>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $('[type=button]').onclick(() => {
+        
+    })
+    // 표현식 CSS
+    document.querySelector('[type=button]').addEventListener('click', function(){
+        // 1. GET 방식으로 직접 주소 입력
+        // location='/polls/{{quesiton.id}}/reset/';})
+        const frm = document.querySelector('#frm')
+        frm.submit()
+</script>
