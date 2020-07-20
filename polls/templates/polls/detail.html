@@ -13,7 +13,7 @@
             </li>
         {% endfor %}
     </ul>
-    <input type='submit' value="전송" />
+    <input type='submit' value="전송" id='send'/>
     <input type='button' value="초기화" />
 </form>
 
@@ -24,7 +24,29 @@
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-    $('[type=button]').onclick(() => {
+    $('#send').click(() => {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'vote' question.id %}",
+            data: $("form:eq(0)").serialize(),
+            success: function(res){
+                console.log(res);
+            },
+        })
+        return false;
+    })
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+    $('[type=button]').click(() => {
         
     })
     // 표현식 CSS
@@ -33,4 +55,5 @@
         // location='/polls/{{quesiton.id}}/reset/';})
         const frm = document.querySelector('#frm')
         frm.submit()
+    })
 </script>

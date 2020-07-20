@@ -3,6 +3,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Question
 
+def logout(request):
+    request.session['user_id'] = None
+    # request.session.clear()
+    return HttpResponse("111")
+
+def login(request):
+    return render(request, 'polls/login.html')
+
+def login_post(request):
+    user_id = request.GET.get('user_id')
+    user_pw = request.GET.get('user_pw')
+    print(user_id, user_pw)
+    request.session['user_id'] = user_id
+    return HttpResponse("로그인 완료")
+
+def index2(request):
+    return render(request, 'polls/index2.html', {})
+
 # Create your views here.
 def index(request):
     q_list = Question.objects.order_by('pub_date')[:5]

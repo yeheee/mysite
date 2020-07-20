@@ -1,3 +1,10 @@
+{% load static %}
+
+<link rel="stylesheet" href="'polls/static/polls/style.css'">
+<!--<link rel="stylesheet" href="{% static 'polls/style.css' %}}">-->
+
+<p>{{request.session.user_id}}님 반갑습니다.</p>
+
 {% if latest_question_list %}
     <ul>
         {% for question in latest_question_list %}
@@ -12,3 +19,4 @@
 {% else %}
 <p>No polls are available.</p>
 {% endif %}
+
